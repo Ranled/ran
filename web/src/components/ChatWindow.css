@@ -1,0 +1,536 @@
+/* ============================================================
+   B.A.N. — ChatWindow.css
+   Main companion interface styling with light capsule input
+   ============================================================ */
+
+.chat-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background: rgba(10, 14, 22, 0.4);
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  height: var(--header-height);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  gap: var(--space-md);
+  background: rgba(14, 18, 27, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.chat-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Connection badge */
+.connection-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid;
+  transition: all var(--transition-base);
+}
+
+.connection-badge.connected {
+  background: rgba(78, 205, 196, 0.12);
+  border-color: rgba(78, 205, 196, 0.35);
+  color: var(--status-online);
+  box-shadow: 0 0 10px rgba(78, 205, 196, 0.15);
+}
+
+.connection-badge.disconnected {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+}
+
+.connection-badge.connecting {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: var(--status-warning);
+  animation: connecting-pulse 1s ease-in-out infinite;
+}
+
+/* ── Connection Banner Strip ──────────────────────────────── */
+.connection-banner-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: linear-gradient(90deg, rgba(30, 36, 50, 0.95), rgba(20, 24, 34, 0.95));
+  border-bottom: 1px solid rgba(78, 205, 196, 0.2);
+  font-size: 12px;
+  animation: slide-up 0.25s ease-out;
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.banner-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.banner-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--status-warning);
+  box-shadow: 0 0 8px var(--status-warning);
+  animation: connecting-pulse 1.2s infinite;
+}
+
+.banner-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.banner-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.banner-err-dismiss {
+  background: none;
+  border: none;
+  color: var(--status-error);
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ── Message list ──────────────────────────────────────────── */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 767px) {
+  .chat-messages {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+}
+
+/* ── Message row ───────────────────────────────────────────── */
+.message-row {
+  display: flex;
+  flex-direction: column;
+  animation: message-appear 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes message-appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.message-row.user   { align-items: flex-end; }
+.message-row.ban    { align-items: flex-start; }
+.message-row.system { align-items: center; }
+
+.message-sender-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  padding: 0 6px;
+}
+
+.message-row.user .message-sender-label { color: var(--text-accent); }
+.message-row.ban  .message-sender-label { color: rgba(255, 255, 255, 0.45); }
+
+.message-bubble-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: min(580px, 86%);
+}
+
+.message-bubble {
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: var(--radius-lg);
+  font-size: 14px;
+  line-height: 1.55;
+  word-break: break-word;
+  white-space: pre-wrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* User bubble */
+.message-row.user .message-bubble {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.2) 0%, rgba(42, 138, 131, 0.25) 100%);
+  border: 1px solid rgba(78, 205, 196, 0.35);
+  border-bottom-right-radius: 4px;
+  color: #f1fdfc;
+}
+
+/* B.A.N. bubble */
+.message-row.ban .message-bubble {
+  background: rgba(26, 32, 44, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom-left-radius: 4px;
+  color: var(--text-primary);
+}
+
+/* Copy button on response */
+.message-copy-btn {
+  opacity: 0;
+  margin-left: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.message-bubble-wrapper:hover .message-copy-btn {
+  opacity: 1;
+}
+
+.message-copy-btn:hover {
+  background: rgba(78, 205, 196, 0.2);
+  color: var(--accent);
+}
+
+/* System message */
+.message-row.system .message-bubble {
+  background: rgba(129, 140, 248, 0.08);
+  border: 1px solid rgba(129, 140, 248, 0.18);
+  border-radius: var(--radius-full);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11.5px;
+  text-align: center;
+  padding: 5px 14px;
+  max-width: 100%;
+}
+
+.message-timestamp {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  padding: 0 6px;
+}
+
+/* Thinking indicator */
+.thinking-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(26, 32, 44, 0.85);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  border-radius: var(--radius-lg);
+  border-bottom-left-radius: 4px;
+}
+
+.thinking-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.thinking-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--status-thinking);
+  animation: thinking-bounce 1.2s ease-in-out infinite;
+}
+
+.thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+
+.thinking-label {
+  font-size: 11px;
+  color: var(--status-thinking);
+  font-weight: 500;
+}
+
+/* ── Bottom Dock & Light Pill Input (Mockup Signature) ─────── */
+.chat-bottom-dock {
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+  background: rgba(12, 16, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Quick prompt suggestions */
+.quick-suggestions-bar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 2px 2px 4px;
+  scrollbar-width: none;
+}
+
+.quick-suggestions-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-prompt-pill {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.quick-prompt-pill:hover {
+  background: rgba(78, 205, 196, 0.12);
+  border-color: rgba(78, 205, 196, 0.3);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ── The Signature Light Pill Input (From User's Image) ── */
+.pod-light-pill-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pod-light-pill-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Matching the exact light pill capsule from user's mockup: */
+  background: #d5cfc5;
+  border-radius: var(--radius-full);
+  padding: 6px 14px 6px 16px;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pod-light-pill-input:focus-within {
+  background: #e3ded6;
+  border-color: #4ecdc4;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.5),
+    0 0 0 3px rgba(78, 205, 196, 0.3),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.pod-light-pill-input.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.pill-terminal-symbol {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: #555a66;
+  user-select: none;
+}
+
+.pill-textarea {
+  flex: 1;
+  min-height: 28px;
+  max-height: 90px;
+  padding: 4px 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  /* Dark text contrasting on light pill */
+  color: #1a1d24;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  line-height: 1.4;
+  overflow-y: auto;
+}
+
+.pill-textarea::placeholder {
+  color: #727783;
+}
+
+.pill-voice-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.pill-voice-btn:hover {
+  background: rgba(0, 0, 0, 0.16);
+  transform: scale(1.08);
+}
+
+.pill-voice-btn.voice-on {
+  color: #1a1d24;
+}
+
+.pill-voice-btn.voice-off {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.pill-send-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #232731;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  color: #4ecdc4;
+}
+
+.pill-send-btn:hover:not(:disabled) {
+  background: #4ecdc4;
+  color: #0b0f16;
+  transform: scale(1.06);
+  box-shadow: 0 0 12px rgba(78, 205, 196, 0.5);
+}
+
+.message-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.message-bubble-wrapper:hover .message-actions-row {
+  opacity: 1;
+}
+
+.message-action-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  border-radius: 6px;
+  padding: 3px 6px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.message-action-btn:hover {
+  background: rgba(78, 205, 196, 0.2);
+  color: var(--accent);
+}
+
+.pill-send-btn:disabled {
+  background: rgba(40, 45, 55, 0.5);
+  color: #656b78;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.chat-input-hint {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+}
+
+/* ── Empty state ───────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-2xl) var(--space-md);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.empty-state-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(78, 205, 196, 0.1);
+  border: 1px solid rgba(78, 205, 196, 0.25);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.empty-state-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}

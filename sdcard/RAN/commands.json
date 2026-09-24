@@ -1,0 +1,16 @@
+{
+  "commands": [
+    {"command": "/help", "description": "Show available local commands"},
+    {"command": "/status", "description": "Check ESP32, memory, and BLE status"},
+    {"command": "/memory", "description": "List stored memories"},
+    {"command": "/remember <text>", "description": "Save text into permanent microSD memory"},
+    {"command": "/search <query>", "description": "Search local memory and knowledge"},
+    {"command": "/forget <id>", "description": "Delete a memory record by ID"},
+    {"command": "/clear_memory", "description": "Erase all stored memories (requires confirmation)"},
+    {"command": "/personality", "description": "View R.A.N. personality directives"},
+    {"command": "/knowledge", "description": "List local knowledge topics"},
+    {"command": "/device", "description": "Show hardware pinout and device specifications"},
+    {"command": "/storage", "description": "Show microSD card capacity and usage"},
+    {"command": "/reload", "description": "Reload personality, settings, and memory from microSD"}
+  ]
+}

@@ -1,0 +1,406 @@
+/* ============================================================
+   B.A.N. — CharacterPanel.css
+   Pod Companion Stage & Pedestal Styling
+   ============================================================ */
+
+.companion-stage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  position: relative;
+  background: rgba(12, 16, 24, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  overflow-y: auto;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* Desktop sidebar layout */
+@media (min-width: 900px) {
+  .companion-stage-container {
+    width: 380px;
+    min-width: 380px;
+    height: 100%;
+    padding: var(--space-xl) var(--space-lg);
+    justify-content: flex-start;
+  }
+}
+
+/* Tablet & Mobile layout */
+@media (max-width: 899px) {
+  .companion-stage-container {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--space-md);
+    flex-shrink: 0;
+  }
+}
+
+/* ── Top Hero Stage: Character + Pedestal ── */
+.character-hero-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding-top: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.character-sprite-anchor {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+  margin-bottom: -22px; /* Sits directly on top of the pedestal pill */
+}
+
+/* ── The Pedestal Pill (from the user's mockup) ── */
+.pedestal-pill {
+  position: relative;
+  width: 230px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(180deg, #383c48 0%, #23262e 55%, #181a20 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pedestal-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 12px 28px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(78, 205, 196, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35);
+}
+
+.pedestal-rim-glow {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.7), transparent);
+  pointer-events: none;
+}
+
+.pedestal-surface {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.75;
+}
+
+.pedestal-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.pedestal-label {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+}
+
+/* ── Stage Controls & Details Card ── */
+.stage-controls-card {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  background: rgba(20, 24, 33, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  transition: border-color var(--transition-base);
+}
+
+.stage-controls-card:hover {
+  border-color: rgba(78, 205, 196, 0.2);
+}
+
+/* Stage Header */
+.stage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.stage-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stage-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stage-name {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.stage-subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Status Pill */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+}
+
+.status-pill.idle, .status-pill.responding {
+  background: rgba(78, 205, 196, 0.1);
+  border-color: rgba(78, 205, 196, 0.3);
+  color: var(--status-online);
+}
+
+.status-pill.thinking {
+  background: rgba(129, 140, 248, 0.1);
+  border-color: rgba(129, 140, 248, 0.3);
+  color: var(--status-thinking);
+}
+
+.status-pill.error {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: var(--status-error);
+}
+
+.status-pill.connecting {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: var(--status-warning);
+}
+
+.status-indicator-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Button pulse for connect */
+.btn-pulse {
+  animation: subtle-pulse 2.2s infinite;
+}
+
+@keyframes subtle-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(78, 205, 196, 0);
+  }
+}
+
+/* ── Mood Selector Bar ── */
+.mood-selector-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mood-bar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mood-bar-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.mood-toggle-link {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.mood-toggle-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+.mood-chips-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mood-chips-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mood-chips-scroll.is-expanded {
+  flex-wrap: wrap;
+  overflow-x: visible;
+}
+
+.mood-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  font-size: 11.5px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.mood-chip:hover {
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.mood-chip.active {
+  background: rgba(78, 205, 196, 0.15);
+  border-color: rgba(78, 205, 196, 0.4);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(78, 205, 196, 0.18);
+}
+
+.mood-chip-icon {
+  font-size: 12px;
+}
+
+/* ── Quick Action Prompt Chips ── */
+.quick-actions-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.quick-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-md);
+  padding: 5px 9px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quick-chip:hover {
+  background: rgba(78, 205, 196, 0.09);
+  border-color: rgba(78, 205, 196, 0.25);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* ── Companion Telemetry Grid ── */
+.companion-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.telemetry-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 9px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  font-size: 10.5px;
+}
+
+.telemetry-pill.full-width {
+  grid-column: span 2;
+}
+
+.telemetry-key {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.telemetry-val {
+  font-weight: 600;
+}
+
+.telemetry-val.ok {
+  color: var(--status-online);
+}
+
+.telemetry-val.fail {
+  color: var(--status-error);
+}

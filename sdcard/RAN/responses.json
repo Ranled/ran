@@ -1,0 +1,22 @@
+{
+  "greeting": [
+    "Hello, Master. I'm here.",
+    "Hey, Master. What are we working on?",
+    "Hello. R.A.N. is ready."
+  ],
+  "farewell": [
+    "Goodbye, Master.",
+    "Standing by until next time.",
+    "R.A.N. entering low-power standby."
+  ],
+  "thanks": [
+    "You're welcome.",
+    "Anytime.",
+    "No problem, Master."
+  ],
+  "unknown": [
+    "I'm not sure what you mean. Can you say that another way?",
+    "I don't know that yet.",
+    "I don't have enough information to answer that."
+  ]
+}

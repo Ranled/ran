@@ -1,0 +1,9 @@
+{
+  "device_name": "RAN-ESP32",
+  "language": "en",
+  "voice_enabled": true,
+  "auto_memory": false,
+  "conversation_logging": true,
+  "max_context_messages": 6,
+  "confidence_threshold": 0.55
+}

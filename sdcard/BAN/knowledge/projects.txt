@@ -1,0 +1,18 @@
+Project: CHARRMPASS
+Description: RFID vehicle entry and exit monitoring system.
+
+Hardware:
+- RFID reader (RC522 or PN532)
+- ESP32 (main controller)
+- LCD display (I2C 16x2 or OLED)
+- Relay module (for gate/barrier control)
+- Power supply: 12V for barrier + 5V for ESP32
+
+Notes:
+- Uses 13.56 MHz MIFARE cards
+- Stores vehicle RFID tags with registration info
+- Logs entry/exit timestamps
+- Can trigger a relay to open a gate/barrier
+- Future: GSM module for SMS alerts when unknown card detected
+
+Status: Active development

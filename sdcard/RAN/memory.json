@@ -1,0 +1,90 @@
+{
+  "memories": [
+    {
+      "id": 1,
+      "type": "PROJECT",
+      "name": "CHARRMPASS",
+      "content": "RFID vehicle entry and exit monitoring system",
+      "keywords": [
+        "rfid",
+        "vehicle",
+        "entry",
+        "exit",
+        "charrmpass",
+        "project"
+      ],
+      "category": "PROJECT",
+      "key": "CHARRMPASS",
+      "value": "RFID vehicle entry and exit monitoring system",
+      "created": "2026-09-25"
+    },
+    {
+      "id": 2,
+      "type": "DEVICE",
+      "name": "RAN_HARDWARE",
+      "content": "R.A.N. uses an ESP32 microcontroller with microSD card and Bluetooth Low Energy",
+      "keywords": [
+        "esp32",
+        "board",
+        "hardware",
+        "ran",
+        "controller",
+        "microcontroller",
+        "microchip"
+      ],
+      "category": "DEVICE",
+      "key": "primary_hardware",
+      "value": "ESP32 + microSD module + Bluetooth Low Energy",
+      "created": "2026-09-25"
+    },
+    {
+      "id": 3,
+      "type": "PROJECT",
+      "name": "RAN",
+      "content": "Raian AI Network — personal ESP32-based offline AI companion with microSD memory",
+      "keywords": [
+        "ran",
+        "raian ai network",
+        "ai",
+        "companion",
+        "assistant"
+      ],
+      "category": "PROJECT",
+      "key": "RAN",
+      "value": "Raian AI Network — personal ESP32-based AI assistant with microSD memory",
+      "created": "2026-09-25"
+    },
+    {
+      "id": 4,
+      "type": "PREFERENCE",
+      "name": "response_style",
+      "content": "direct, technical, and practical — no unnecessary fluff",
+      "keywords": [
+        "style",
+        "tone",
+        "direct",
+        "practical"
+      ],
+      "category": "PREFERENCE",
+      "key": "response_style",
+      "value": "direct and practical — no unnecessary fluff",
+      "created": "2026-09-25"
+    },
+    {
+      "id": 5,
+      "type": "PERSONAL",
+      "name": "creator",
+      "content": "Master Raian is the creator and engineer of R.A.N.",
+      "keywords": [
+        "master",
+        "raian",
+        "creator",
+        "engineer"
+      ],
+      "category": "PERSONAL",
+      "key": "creator",
+      "value": "Master Raian",
+      "created": "2026-09-25"
+    }
+  ]
+}

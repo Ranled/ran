@@ -1,0 +1,305 @@
+/* ============================================================
+   B.A.N. — CharacterSprite.css
+   Pixel-art animation rendering and interactive behaviors
+   ============================================================ */
+
+.character-sprite-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  user-select: none;
+  cursor: default;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.character-sprite-stage.is-interactive {
+  cursor: pointer;
+}
+
+.character-sprite-stage.is-interactive:hover .character-frame-wrapper {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.character-sprite-stage.is-interactive:active .character-frame-wrapper {
+  transform: translateY(2px) scale(0.98);
+}
+
+/* Sizing presets */
+.character-sprite-stage.size-compact {
+  width: 140px;
+  height: 170px;
+}
+
+.character-sprite-stage.size-standard {
+  width: 200px;
+  height: 240px;
+}
+
+.character-sprite-stage.size-large {
+  width: 260px;
+  height: 310px;
+}
+
+@media (max-width: 600px) {
+  .character-sprite-stage.size-standard {
+    width: 170px;
+    height: 205px;
+  }
+}
+
+/* Frame wrapper */
+.character-frame-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Pixel art rendering — critical for crisp sprites */
+.character-sprite-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.45));
+  transition: filter 0.3s ease;
+}
+
+/* Contact shadow on the pedestal */
+.pedestal-contact-shadow {
+  position: absolute;
+  bottom: 0px;
+  width: 90px;
+  height: 14px;
+  background: radial-gradient(ellipse at center, rgba(10, 14, 22, 0.8) 0%, rgba(10, 14, 22, 0.3) 50%, transparent 75%);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Mood-specific sprite behaviors & animations */
+.mood-idle .character-frame-wrapper {
+  animation: sprite-breath 3.5s ease-in-out infinite;
+}
+
+.mood-wave .character-frame-wrapper {
+  animation: sprite-wave-sway 1.8s ease-in-out infinite;
+}
+
+.mood-talking .character-frame-wrapper {
+  animation: sprite-talk-bounce 0.6s ease-in-out infinite alternate;
+}
+
+.mood-happy .character-frame-wrapper {
+  animation: sprite-happy-hop 1.4s ease-in-out infinite;
+}
+
+.mood-wondering .character-frame-wrapper {
+  animation: sprite-wonder-tilt 2.5s ease-in-out infinite;
+}
+
+.mood-shock .character-frame-wrapper {
+  animation: sprite-shock-shake 0.3s ease-in-out infinite;
+}
+
+.mood-angry .character-frame-wrapper {
+  animation: sprite-angry-stomp 0.5s ease-in-out infinite;
+}
+
+.mood-sad .character-frame-wrapper {
+  animation: sprite-sad-droop 3s ease-in-out infinite;
+}
+
+.mood-walking .character-frame-wrapper {
+  animation: sprite-walk-sway 0.8s ease-in-out infinite alternate;
+}
+
+.mood-running .character-frame-wrapper {
+  animation: sprite-run-bob 0.4s ease-in-out infinite alternate;
+}
+
+/* Keyframes */
+@keyframes sprite-breath {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes sprite-wave-sway {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) rotate(1deg);
+  }
+  75% {
+    transform: translateY(-2px) rotate(-1deg);
+  }
+}
+
+@keyframes sprite-talk-bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes sprite-happy-hop {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  30% {
+    transform: translateY(-9px) scale(1.03, 0.97);
+  }
+  60% {
+    transform: translateY(0) scale(0.98, 1.02);
+  }
+}
+
+@keyframes sprite-wonder-tilt {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(2deg);
+  }
+}
+
+@keyframes sprite-shock-shake {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-2px, -3px); }
+  75% { transform: translate(2px, -1px); }
+}
+
+@keyframes sprite-angry-stomp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px) scaleY(1.02); }
+}
+
+@keyframes sprite-sad-droop {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(3px) scale(0.99, 0.97); }
+}
+
+@keyframes sprite-walk-sway {
+  0% { transform: translateY(0) translateX(-3px); }
+  100% { transform: translateY(-3px) translateX(3px); }
+}
+
+@keyframes sprite-run-bob {
+  0% { transform: translateY(0) scale(1, 0.98); }
+  100% { transform: translateY(-6px) scale(0.98, 1.02); }
+}
+
+/* Subtle Aura Glow */
+.character-aura {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  filter: blur(28px);
+  transition: all 0.5s ease;
+}
+
+.aura-idle, .aura-wave {
+  background: radial-gradient(circle, rgba(78, 205, 196, 0.35) 0%, transparent 70%);
+}
+
+.aura-happy {
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, transparent 70%);
+}
+
+.aura-talking {
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.4) 0%, transparent 70%);
+}
+
+.aura-wondering {
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.4) 0%, transparent 70%);
+}
+
+.aura-shock {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.45) 0%, transparent 70%);
+}
+
+.aura-angry {
+  background: radial-gradient(circle, rgba(248, 113, 113, 0.5) 0%, transparent 70%);
+}
+
+.aura-sad {
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.35) 0%, transparent 70%);
+}
+
+.aura-walking, .aura-running {
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.4) 0%, transparent 70%);
+}
+
+/* Floating Speech Bubble */
+.character-speech-bubble {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(18, 22, 32, 0.92);
+  border: 1px solid rgba(78, 205, 196, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 14px rgba(78, 205, 196, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #f1f5f9;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+  animation: speech-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.speech-text {
+  letter-spacing: 0.02em;
+}
+
+.speech-arrow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(18, 22, 32, 0.92);
+}
+
+@keyframes speech-pop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}

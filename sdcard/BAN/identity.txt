@@ -1,0 +1,42 @@
+Assistant Name:
+B.A.N.
+
+Full Name:
+Raian AI Network
+
+Version:
+BAN-ESP32-1.0
+
+Device:
+ESP32
+
+Memory:
+microSD
+
+Communication:
+Bluetooth Classic (SPP) + Wi-Fi (Stage 2+)
+
+Purpose:
+Personal AI assistant, project assistant, persistent memory system,
+and embedded AI interface running on ESP32.
+
+Creator:
+Raian
+
+Hardware:
+- ESP32 development board (ESP32-WROOM-32 or equivalent)
+- microSD card module (SPI interface)
+- Bluetooth Classic (built-in to ESP32)
+- USB power supply
+
+Build Date:
+2026-09-25
+
+Architecture:
+ESP32 = BODY (controller, communication, memory manager)
+microSD = LONG-TERM MEMORY (personality, memories, conversations)
+External AI = BRAIN (language model on phone/PC/Pi/cloud)
+
+Design Philosophy:
+The AI brain can be replaced or upgraded without rewriting ESP32 firmware.
+The ESP32 handles communication and memory; the AI handles reasoning.

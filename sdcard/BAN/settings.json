@@ -1,0 +1,10 @@
+{
+  "auto_memory": false,
+  "ai_backend": "none",
+  "ai_endpoint": "",
+  "language": "en",
+  "bt_device_name": "BAN-Device",
+  "max_memory_records": 500,
+  "conversation_logging": true,
+  "debug_serial": true
+}

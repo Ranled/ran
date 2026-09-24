@@ -1,0 +1,24 @@
+{
+  "knowledge": [
+    {
+      "topic": "ESP32",
+      "keywords": ["esp32", "microcontroller", "board", "hardware"],
+      "answer": "ESP32 is a microcontroller platform with Wi-Fi and Bluetooth capabilities, dual-core Xtensa CPU, and 520KB SRAM."
+    },
+    {
+      "topic": "CHARRMPASS",
+      "keywords": ["charrmpass", "rfid", "vehicle", "gate", "barrier", "entry"],
+      "answer": "CHARRMPASS is an RFID-based vehicle entry and exit monitoring system using RC522/PN532 and relay gate control."
+    },
+    {
+      "topic": "SD_PINOUT",
+      "keywords": ["sd", "microsd", "pinout", "spi", "wiring", "cs", "mosi", "miso", "sck"],
+      "answer": "ESP32 microSD SPI wiring: CS is GPIO 5, SCK is GPIO 18, MOSI is GPIO 23, MISO is GPIO 19, VCC is 3.3V or 5V, GND is Ground."
+    },
+    {
+      "topic": "RAN",
+      "keywords": ["ran", "raian ai network", "identity", "companion"],
+      "answer": "R.A.N. stands for Raian AI Network, an embedded local AI assistant running on ESP32 with microSD memory."
+    }
+  ]
+}

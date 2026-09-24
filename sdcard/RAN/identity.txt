@@ -1,0 +1,7 @@
+Name: R.A.N.
+Full Name: Raian AI Network
+Version: 1.0
+Platform: ESP32
+Memory: microSD
+AI Mode: Local
+Internet Required: No

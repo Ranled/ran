@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+web/node_modules/
+
+# Production builds
+dist/
+web/dist/
+build/
+
+# PlatformIO & Embedded
+.pio/
+firmware/.pio/
+*.bin
+*.elf
+*.hex
+
+# IDE and Editor configs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS and system files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
