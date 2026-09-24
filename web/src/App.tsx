@@ -13,6 +13,7 @@ import { useBanStatus } from './hooks/useBanStatus';
 import { storage }      from './services/storage';
 import { speechService } from './services/speech';
 import { generateRanReply } from './services/ranAi';
+import { tuqlasService } from './services/tuqlas';
 
 import CharacterPanel from './components/CharacterPanel';
 import ChatWindow     from './components/ChatWindow';
@@ -57,6 +58,31 @@ export default function App() {
       );
     }, 1200);
     return () => clearTimeout(t);
+  }, []);
+
+  // ── Tuqlas AI Chatbot Synchronizer ───────────────────────
+  useEffect(() => {
+    tuqlasService.initBridge({
+      onBotMessage: (text: string, mood: CharacterMood) => {
+        // When Tuqlas outputs a response, align R.A.N.'s character mood!
+        setCurrentMood('talking');
+        const shortBubble = text.length > 45 ? text.slice(0, 42) + '…' : text;
+        setBubbleText(shortBubble);
+
+        // Speak the Tuqlas answer out loud via Web Speech API!
+        speechService.speak(
+          text,
+          () => setCurrentMood('talking'),
+          () => {
+            setCurrentMood(mood);
+            setTimeout(() => {
+              setCurrentMood('idle');
+              setBubbleText(null);
+            }, 3500);
+          }
+        );
+      },
+    });
   }, []);
 
   // ── Track pending chat message id for status updates ──────
