@@ -1,0 +1,9 @@
+{
+  "name": "ran-companion",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm --prefix web run build",
+    "install:web": "npm --prefix web install"
+  }
+}
